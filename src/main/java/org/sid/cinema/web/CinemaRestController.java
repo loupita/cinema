@@ -7,6 +7,7 @@ import org.sid.cinema.entities.Film;
 import org.sid.cinema.entities.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -33,6 +34,7 @@ public class CinemaRestController {
         return Files.readAllBytes(path);
     }
     @PostMapping("/payerTickets")
+    @Transactional
     public List<Ticket> payerTickets(@RequestBody TicketForm ticketForm){
         List<Ticket> listTickets = new ArrayList<>();
         ticketForm.getTickets().forEach(idTicket ->{
